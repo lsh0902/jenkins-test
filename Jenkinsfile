@@ -26,7 +26,7 @@ pipeline {
             steps {
                 script {
                     sh "pwd"
-                    def ret = sh(script: "sh patrick.sh ${APP_BRANCH}", returnStdout: true)
+                    def ret = sh(script: "sh patrick.sh", returnStdout: true)
                     sh 'echo $ret'
                 }
             }
