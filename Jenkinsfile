@@ -35,4 +35,15 @@ pipeline {
             }
         }
     }
+
+    post {
+        always {
+            // end notification
+            script {
+                if(params.GENERATE_CLIENT){
+                    sh "git push origin"
+                }
+            }
+        }
+    }
 }
