@@ -5,7 +5,7 @@ pipeline {
     environment {
         TALK_GROUP_ID = 8641
         PHASE = ''
-        APP_BRANCH = 'alpha'
+        APP_BRANCH = 'master'
         BUILD_USER = ''
         }
 
@@ -41,7 +41,7 @@ pipeline {
             // end notification
             script {
                 if(params.GENERATE_CLIENT){
-                    sh "git push origin"
+                    sh "git push origin ${APP_BRANCH}"
                 }
             }
         }
