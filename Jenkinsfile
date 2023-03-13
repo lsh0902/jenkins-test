@@ -41,6 +41,10 @@ pipeline {
             // end notification
             script {
                 if(params.GENERATE_CLIENT){
+                    // git push
+                    def ret = sh(script: "cat VERSION", returnStdout: true)
+                    sh "git add ."
+                    sh "git commit -m 'client version up ${ret}'"
                     sh "git push origin ${APP_BRANCH}"
                 }
             }
