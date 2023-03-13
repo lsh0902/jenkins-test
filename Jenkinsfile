@@ -23,7 +23,7 @@ pipeline {
             steps {
                 script {
                     sh "pwd"
-                    def ret = sh(script: "sh patrick.sh ${APP_BRANCH}", returnStdout: true)
+                    sh "./patrick.sh ${APP_BRANCH}"
                     sh 'cat VERSION'
                 }
             }
