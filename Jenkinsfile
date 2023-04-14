@@ -42,9 +42,7 @@ pipeline {
         success {
              script {
                 def msg = """\
-                        [Jenkins]
-                        RESULT: ${currentBuild.currentResult}
-                        BUILD_URL: ${env.BUILD_URL}"""
+                        [Jenkins] fail"""
 
                 if(params.NOTIFICATION){
                     sh "echo $msg"
@@ -61,9 +59,7 @@ pipeline {
 
                 def msg = """\
                         [Jenkins]
-                        RESULT: ${currentBuild.currentResult}
-                        CURRENT_VERSION: ${version}
-                        BUILD_URL: ${env.BUILD_URL}"""
+                        RESULT: ${version}"""
 
                 if(params.NOTIFICATION){
                     sh "echo $msg"
