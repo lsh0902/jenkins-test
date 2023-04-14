@@ -39,6 +39,13 @@ pipeline {
     }
 
     post {
+
+        always {
+            // end notification
+            script {
+                echo "${currentBuild.currentResult}"
+            }
+        }
         failure {
              script {
                 def msg = """\
