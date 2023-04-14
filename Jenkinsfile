@@ -42,7 +42,7 @@ pipeline {
         always {
             script {
                 def msg = """\
-                        이건 원래 메시지"""
+                        [Jenkins] dfeaulfas"""
                 echo "${msg}"
                 if (currentBuild.currentResult == "SUCCESS" && true) {
                     def ret = sh(script: "cat VERSION", returnStdout: true)
