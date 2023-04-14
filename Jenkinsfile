@@ -7,12 +7,14 @@ pipeline {
         PHASE = ''
         APP_BRANCH = 'master'
         BUILD_USER = ''
-        }
+    }
 
     parameters {
         choice(name: 'DEPLOY_TYPES', choices: ['deploy', 'restart'], description: '실행할 작업')
         booleanParam(name: 'GENERATE_CLIENT', defaultValue: true, description: '클라이언트 생성 여부')
         string(name: 'SERIAL_NUMBER', defaultValue: '100%', description: '1번에 배포할 서버 수')
+        booleanParam(name: 'NOTIFICATION', defaultValue: true, description: '카톡 알림 여부')
+
     }
 
     stages {
@@ -37,15 +39,36 @@ pipeline {
     }
 
     post {
-        always {
-            // end notification
+        success {
+             script {
+                def msg = """\
+                        [Jenkins]
+                        [${decodeJobName(env.JOB_NAME)}] complete.
+                        RESULT: ${currentBuild.currentResult}
+                        BUILD_URL: ${env.BUILD_URL}"""
+            }
+        }
+
+        failure {
             script {
-                if(params.GENERATE_CLIENT){
-                    // git push
-                    def ret = sh(script: "cat VERSION", returnStdout: true)
-                    sh "git add ."
-                    sh "git commit -m 'client version up ${ret}'"
-                    sh "git push origin ${APP_BRANCH}"
+                def version = sh (
+                        script: 'cat client/VERSION',
+                        returnStdout: true
+                    ).trim()
+
+                def msg = """\
+                        [Jenkins]
+                        [${decodeJobName(env.JOB_NAME)}] complete.
+                        RESULT: ${currentBuild.currentResult}
+                        CURRENT_VERSION: ${version}
+                        BUILD_URL: ${env.BUILD_URL}"""
+            }
+        }
+
+        cleanup {
+            script {
+                if(params.NOTIFICATION){
+                    echo $msg
                 }
             }
         }
