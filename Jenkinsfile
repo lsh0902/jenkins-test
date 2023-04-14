@@ -52,10 +52,7 @@ pipeline {
 
         success {
             script {
-                def version = sh (
-                        script: 'cat VERSION',
-                        returnStdout: true
-                    ).trim()
+                def version =  sh(returnStdout: true, script: 'cat VERSION')
 
                 def msg = """\
                         [Jenkins]
@@ -64,6 +61,13 @@ pipeline {
                 if(params.NOTIFICATION){
                     sh "echo $msg"
                 }
+            }
+        }
+        
+        cleanup {
+            script {
+                sh "clean upup"
+                sh "echo $msg"
             }
         }
     }
