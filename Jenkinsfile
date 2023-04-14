@@ -47,7 +47,9 @@ pipeline {
                     def ret = sh(script: "cat VERSION", returnStdout: true)
                     msg = msg + "\nVERSION: ${ret}"
                 }
-                echo $msg
+
+                echo "33333333333"
+                echo "${msg}"
             }
         }
     }
