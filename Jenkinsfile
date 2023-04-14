@@ -43,11 +43,11 @@ pipeline {
             script {
                 def msg = """\
                         [Jenkins] dfeaulfas"""
-                echo "${msg}"
+                echo "${msg.stripMargin().stripIndent()}"
                 if (currentBuild.currentResult == "SUCCESS" && true) {
                     def ret = sh(script: "cat VERSION", returnStdout: true)
                     msg = """\
-                          ${msg}
+                          ${msg.stripMargin().stripIndent()}
                           VERSION: ${ret}"""
                 }
 
