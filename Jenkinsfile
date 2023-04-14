@@ -39,43 +39,15 @@ pipeline {
     }
 
     post {
-
         always {
-            // end notification
             script {
-                echo "${currentBuild.currentResult}"
-            }
-        }
-        failure {
-             script {
                 def msg = """\
-                        [Jenkins] fail"""
-
-                if(params.NOTIFICATION){
-                    sh "echo $msg"
+                        이건 원래 메시지"""
+                if (currentBuild.currentResult == "SUCCESS") {
+                    def ret = sh(script: "cat VERSION", returnStdout: true)
+                    msg = msg + "\nVERSION: ${ret}"
                 }
-            }
-        }
-
-        success {
-            script {
-                sh "ls"
-                def ret = sh(script: "cat VERSION", returnStdout: true)
-
-                def msg = """\
-                        [Jenkins]
-                        RESULT: ${ret}"""
-
-                if(params.NOTIFICATION){
-                    sh "echo $msg"
-                }
-            }
-        }
-        
-        cleanup {
-            script {
-                sh "clean upup"
-                sh "echo $msg"
+                echo $msg
             }
         }
     }
