@@ -45,7 +45,9 @@ pipeline {
                         이건 원래 메시지"""
                 if (currentBuild.currentResult == "SUCCESS" && true) {
                     def ret = sh(script: "cat VERSION", returnStdout: true)
-                    msg = msg + "\nVERSION: ${ret}"
+                    msg = """\
+                          ${msg}
+                          VERSION: ${ret}"""
                 }
 
                 echo "33333333333"
