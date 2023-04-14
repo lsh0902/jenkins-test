@@ -45,6 +45,10 @@ pipeline {
                         [Jenkins]
                         RESULT: ${currentBuild.currentResult}
                         BUILD_URL: ${env.BUILD_URL}"""
+
+                if(params.NOTIFICATION){
+                    echo $msg
+                }
             }
         }
 
@@ -60,11 +64,7 @@ pipeline {
                         RESULT: ${currentBuild.currentResult}
                         CURRENT_VERSION: ${version}
                         BUILD_URL: ${env.BUILD_URL}"""
-            }
-        }
 
-        cleanup {
-            script {
                 if(params.NOTIFICATION){
                     echo $msg
                 }
