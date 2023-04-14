@@ -52,7 +52,7 @@ pipeline {
                 }
 
                 echo "33333333333"
-                echo "${msg}"
+                echo "${msg.stripMargin().stripIndent()}"
             }
         }
     }
