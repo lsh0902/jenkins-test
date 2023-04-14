@@ -47,7 +47,7 @@ pipeline {
                         BUILD_URL: ${env.BUILD_URL}"""
 
                 if(params.NOTIFICATION){
-                    echo $msg
+                    sh "echo $msg"
                 }
             }
         }
@@ -66,7 +66,7 @@ pipeline {
                         BUILD_URL: ${env.BUILD_URL}"""
 
                 if(params.NOTIFICATION){
-                    echo $msg
+                    sh "echo $msg"
                 }
             }
         }
