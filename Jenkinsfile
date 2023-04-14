@@ -39,7 +39,7 @@ pipeline {
     }
 
     post {
-        success {
+        failure {
              script {
                 def msg = """\
                         [Jenkins] fail"""
@@ -50,7 +50,7 @@ pipeline {
             }
         }
 
-        failure {
+        success {
             script {
                 def version = sh (
                         script: 'cat VERSION',
