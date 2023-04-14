@@ -57,7 +57,7 @@ pipeline {
 
                 def msg = """\
                         [Jenkins]
-                        RESULT: ${version}"""
+                        RESULT: ${ret}"""
 
                 if(params.NOTIFICATION){
                     sh "echo $msg"
