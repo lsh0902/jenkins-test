@@ -43,7 +43,6 @@ pipeline {
              script {
                 def msg = """\
                         [Jenkins]
-                        [${decodeJobName(env.JOB_NAME)}] complete.
                         RESULT: ${currentBuild.currentResult}
                         BUILD_URL: ${env.BUILD_URL}"""
             }
@@ -58,7 +57,6 @@ pipeline {
 
                 def msg = """\
                         [Jenkins]
-                        [${decodeJobName(env.JOB_NAME)}] complete.
                         RESULT: ${currentBuild.currentResult}
                         CURRENT_VERSION: ${version}
                         BUILD_URL: ${env.BUILD_URL}"""
