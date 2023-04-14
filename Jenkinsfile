@@ -52,7 +52,8 @@ pipeline {
 
         success {
             script {
-                def version =  sh(returnStdout: true, script: 'cat VERSION')
+                sh "ls"
+                def ret = sh(script: "cat VERSION", returnStdout: true)
 
                 def msg = """\
                         [Jenkins]
