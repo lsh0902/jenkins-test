@@ -55,7 +55,7 @@ pipeline {
         failure {
             script {
                 def version = sh (
-                        script: 'cat client/VERSION',
+                        script: 'cat VERSION',
                         returnStdout: true
                     ).trim()
 
