@@ -43,7 +43,7 @@ pipeline {
             script {
                 def msg = """\
                         이건 원래 메시지"""
-                if (currentBuild.currentResult == "SUCCESS") {
+                if (currentBuild.currentResult == "SUCCESS" && true) {
                     def ret = sh(script: "cat VERSION", returnStdout: true)
                     msg = msg + "\nVERSION: ${ret}"
                 }
