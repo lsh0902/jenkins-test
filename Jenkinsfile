@@ -41,18 +41,10 @@ pipeline {
     post {
         always {
             script {
-                def msg = """\
-                        [Jenkins] dfeaulfas"""
-                echo "${msg.stripMargin().stripIndent()}"
-                if (currentBuild.currentResult == "SUCCESS" && true) {
-                    def ret = sh(script: "cat VERSION", returnStdout: true)
-                    msg = """\
-                          ${msg.stripMargin().stripIndent()}
-                          VERSION: ${ret}"""
-                }
 
-                echo "33333333333"
-                echo "${msg.stripMargin().stripIndent()}"
+                def msg = "[Jenkins] hi---hi"
+                msg = msg.replaceAll("---", "")
+                echo "${msg}"
             }
         }
     }
