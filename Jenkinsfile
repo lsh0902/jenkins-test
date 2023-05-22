@@ -36,7 +36,7 @@ pipeline {
 
         stage('deploy') {
             steps {
-                echo 'Deploying....'
+                echo 'Deployiddddng....'
             }
         }
     }
