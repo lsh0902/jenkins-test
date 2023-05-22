@@ -18,16 +18,13 @@ pipeline {
     }
 
     stages {
+
         stage('client_gen') {
-            steps {
+            script {
                 def FLAG = sh(script: "git diff --shortstat HEAD HEAD~1 VERSION | wc -l", returnStdout: true).trim()
                 sh "echo ${FLAG}"
-            }
-            when {
-                expression { return params.DEPLOY_TYPES.contains('deploy') && params.GENERATE_CLIENT }
-            }
-            steps {
-                script {
+
+                if ( FLAG != '0' || params.DEPLOY_TYPES.contains('deploy') && params.GENERATE_CLIENT ) {
                     sh "pwd"
                     sh "./patrick.sh ${APP_BRANCH}"
                     sh "echo with"
