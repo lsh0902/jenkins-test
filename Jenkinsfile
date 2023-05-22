@@ -27,6 +27,7 @@ pipeline {
                     sh "pwd"
                     sh "./patrick.sh ${APP_BRANCH}"
                     sh "echo with"
+
                     sh 'cat VERSION'
                     echo just
                     cat VERSION
