@@ -28,9 +28,7 @@ pipeline {
                     if ( FLAG != '0' || params.DEPLOY_TYPES.contains('deploy') && params.GENERATE_CLIENT ) {
                         sh "pwd"
                         sh "./patrick.sh ${APP_BRANCH}"
-                        sh "echo with"
                         sh 'cat VERSION'
-                        cat VERSION
                     }
                 }
             }
