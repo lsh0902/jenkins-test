@@ -24,14 +24,12 @@ pipeline {
 
                 script {
                     def FLAG = sh(script: "git diff --shortstat HEAD HEAD~1 VERSION | wc -l", returnStdout: true).trim()
-                    sh "echo ${FLAG}"
 
                     if ( FLAG != '0' || params.DEPLOY_TYPES.contains('deploy') && params.GENERATE_CLIENT ) {
                         sh "pwd"
                         sh "./patrick.sh ${APP_BRANCH}"
                         sh "echo with"
                         sh 'cat VERSION'
-                        echo just
                         cat VERSION
                     }
                 }
