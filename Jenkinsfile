@@ -19,6 +19,10 @@ pipeline {
 
     stages {
         stage('client_gen') {
+            steps {
+                def FLAG = sh(script: "git diff --shortstat HEAD HEAD~1 VERSION | wc -l", returnStdout: true).trim()
+                sh "echo ${FLAG}"
+            }
             when {
                 expression { return params.DEPLOY_TYPES.contains('deploy') && params.GENERATE_CLIENT }
             }
