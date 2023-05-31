@@ -70,9 +70,9 @@ def writeFile(token, filePath){
     token = token.replaceAll('"', '\"')
     def parsedToken = token.split("'")
 
-    sh "echo -n ${parsedToken[0]} > ${filePath}"
+    sh "echo -n \${parsedToken[0]} > ${filePath}"
     sh "echo -n \\' >> ${filePath}"
-    sh "echo -n ${parsedToken[1]} >> ${filePath}"
+    sh "echo -n \${parsedToken[1]} >> ${filePath}"
     sh "echo -n \\' >> ${filePath}"
 
     sh "echo ${parsedToken.size()}"
