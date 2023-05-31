@@ -52,8 +52,8 @@ pipeline {
                     sh "echo ${st}"
 
                     token = token.replaceAll("---", "")
-                    token = token.replaceAll("'", "\'")
-                    token = token.replaceAll('"', '\"')
+                    token = token.replaceAll("'", "\\'")
+                    token = token.replaceAll('"', '\\"')
                     sh "echo \"${token}\""
                     sh "echo 1"
                     sh "echo \'${token}\'"
