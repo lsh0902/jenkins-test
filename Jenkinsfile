@@ -67,7 +67,7 @@ pipeline {
 
 def writeFile(token, filePath){
     token = token.replaceAll("---", "")
-    sh "echo ${token} > ${filePath}"
-    sh "sed \"s/ / '/g\" ${filePath}"
+    sh "echo -n ${token} > ${filePath}"
+    sh "sed \"s/ / '\"'\"'/g\" ${filePath}"
     sh "echo \\' >> ${filePath}"
 }
