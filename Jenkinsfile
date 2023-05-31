@@ -48,8 +48,9 @@ pipeline {
                     )
                     token = token.replaceAll("---", "")
                     token = token.replaceAll('"', '\"')
+                    sh "echo ${token}"
 
-                    sh "echo \"${token}\" > ${target_dir}"
+                    sh "echo \${token} > ${target_dir}"
                 }
             }
         }
