@@ -46,8 +46,8 @@ pipeline {
                                 string(name: 'TOKEN', defaultValue: '', description: 'code')
                         ]
                     )
+                    writeFile(token, target_dir)
                 }
-                writeFile(token, target_dir)
             }
         }
     }
@@ -66,7 +66,7 @@ pipeline {
 
 def writeFile(token, filePath){
     token = token.replaceAll("---", "")
-    echo -n ${token} > ${filePath}
-    sed "s/ / '/g" ${filePath}
-    echo \\' >> ${filePath}
+    sh "echo -n ${token} > ${filePath}"
+    sh "sed \"s/ / '/g\" ${filePath}"
+    sh "echo \\' >> ${filePath}"
 }
