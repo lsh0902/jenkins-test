@@ -48,7 +48,7 @@ pipeline {
                     )
 
                     def st = "hi"
-                    st = st.replaceAll("h", "\h")
+                    st = st.replaceAll("h", "\\h")
                     sh "echo ${st}"
 
                     token = token.replaceAll("---", "")
