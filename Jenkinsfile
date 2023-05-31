@@ -52,8 +52,8 @@ pipeline {
                     sh "echo ${st}"
 
                     token = token.replaceAll("---", "")
-                    token = token.replaceAll("\"", '\\\"')
-                    sh "echo \"${token}\""
+                    token = token.replaceAll('"', '\\"')
+                    sh 'echo \\"${token}\\"'
 
                     sh 'echo \\"${token}\\" > ${target_dir}'
                 }
