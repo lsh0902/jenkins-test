@@ -47,9 +47,7 @@ pipeline {
                         ]
                     )
 
-                    def st = "hi"
-                    st = st.replaceAll("h", "\\h")
-                    sh "echo ${st}"
+                    getPhase()
 
                     token = token.replaceAll("---", "")
                     token = token.replaceAll('"', '\\"')
@@ -71,4 +69,8 @@ pipeline {
             }
         }
     }
+}
+
+def getPhase(){
+    sh "echo hi"
 }
