@@ -67,7 +67,13 @@ pipeline {
 
 def writeFile(token, filePath){
     token = token.replaceAll("---", "")
-    def parsedToken = token.split("'")
+
+    sh "echo -n ${token}"
+
+    def parsedToken = token.split('\'')
+
+    sh "echo -n ${parsedToken[0]}"
+    sh "echo -n ${parsedToken[1]}"
 
     sh "echo -n ${parsedToken[0]} > ${filePath}"
     sh "echo -n \\' >> ${filePath}"
