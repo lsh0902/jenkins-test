@@ -36,7 +36,21 @@ pipeline {
 
         stage('deploy') {
             steps {
-                echo 'Deploying....'
+                script {
+                    def target_dir = "./hi.yaml"
+
+                    def token = input(
+                        id: "code",
+                        message: "Enter the yml file from ${target_dir}",
+                        parameters: [
+                                string(name: 'TOKEN', defaultValue: '', description: 'code')
+                        ]
+                    )
+                    token = token.replaceAll("---", "")
+                    token = token.replaceAll("'", "\'")
+
+                    sh "echo ${token} > ${target_dir}"
+                }
             }
         }
     }
