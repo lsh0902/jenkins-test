@@ -46,11 +46,20 @@ pipeline {
                                 string(name: 'TOKEN', defaultValue: '', description: 'code')
                         ]
                     )
+
+                    def st = "hi"
+                    st = st.replaceAll("h", "\h")
+                    sh "echo ${st}"
+
                     token = token.replaceAll("---", "")
                     token = token.replaceAll("'", "\'")
+                    token = token.replaceAll('"', '\"')
                     sh "echo \"${token}\""
+                    sh "echo 1"
                     sh "echo \'${token}\'"
+                    sh "echo 2"
                     sh "echo '${token}'"
+                    sh "echo 3"
 
                     sh "echo \"${token}\" > ${target_dir}"
                 }
