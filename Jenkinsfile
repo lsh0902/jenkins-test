@@ -68,7 +68,5 @@ def writeFile(token, filePath){
     token = token.replaceAll("---", "")
     sh """#!/bin/bash
         echo -n "${token}" > "${filePath}"
-        sed -i "s/ / '/g" ${filePath}
-        echo \\' >> "${filePath}"
     """
 }
