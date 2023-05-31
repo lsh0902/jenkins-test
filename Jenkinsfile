@@ -67,26 +67,7 @@ pipeline {
 
 def writeFile(token, filePath){
     token = token.replaceAll("---", "")
-
-    def test = 'hel"l"omanemin'
-    def p = test.split('e')
-    sh "echo ${p[0]}"
-    sh "echo \"${p[0]}\""
-
-    sh "echo ${p[1]}"
-    sh "echo \"${p[1]}\""
-
-    sh "echo -n ${token}"
-
-    def parsedToken = token.split("'")
-
-    sh "echo -n ${parsedToken[0]}"
-    sh "echo -n ${parsedToken[1]}"
-
-    sh "echo -n ${parsedToken[0]} > ${filePath}"
-    sh "echo -n \\' >> ${filePath}"
-    sh "echo -n ${parsedToken[1]} >> ${filePath}"
-    sh "echo -n \\' >> ${filePath}"
-
-    sh "echo ${parsedToken.size()}"
+    sh "echo ${token} > ${target_dir}"
+    sh "sed \"s/ / '/g\" ${target_dir}"
+    sh "echo \\' >> ${target_dir}"
 }
