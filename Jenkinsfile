@@ -69,9 +69,9 @@ def writeFile(token, filePath){
     token = token.replaceAll("---", "")
     def parsedToken = token.split("'")
     sh "echo ${parsedToken[0]} > ${filePath}"
-    sh "echo \' >> ${filePath}"
+    sh "echo \\' >> ${filePath}"
     sh "echo ${parsedToken[1]} >> ${filePath}"
-    sh "echo \' >> ${filePath}"
+    sh "echo \\' >> ${filePath}"
 
     sh "echo 더있나"
     sh "echo ${parsedToken[2]}"
