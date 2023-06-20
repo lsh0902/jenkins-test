@@ -21,16 +21,8 @@ pipeline {
 
         stage('client_gen') {
             steps {
-
                 script {
-                    def FLAG = sh(script: "git diff --shortstat HEAD HEAD~1 VERSION | wc -l", returnStdout: true).trim()
-
-                    if ( FLAG != '0' || params.DEPLOY_TYPES.contains('deploy') && params.GENERATE_CLIENT ) {
-                        params.GENERATE_CLIENT = false
-                        sh "pwd"
-                        sh "./patrick.sh ${APP_BRANCH}"
-                        sh 'cat VERSION'
-                    }
+                    params.GENERATE_CLIENT = false
                 }
             }
         }
@@ -39,15 +31,6 @@ pipeline {
             steps {
                 script {
                     def target_dir = "./hi.yaml"
-
-                    def token = input(
-                        id: "code",
-                        message: "Enter the yml file from ${target_dir}",
-                        parameters: [
-                                string(name: 'TOKEN', defaultValue: '', description: 'code')
-                        ]
-                    )
-                    writeFile(token, target_dir)
                 }
             }
         }
