@@ -26,6 +26,7 @@ pipeline {
                     def FLAG = sh(script: "git diff --shortstat HEAD HEAD~1 VERSION | wc -l", returnStdout: true).trim()
 
                     if ( FLAG != '0' || params.DEPLOY_TYPES.contains('deploy') && params.GENERATE_CLIENT ) {
+                        params.GENERATE_CLIENT = false
                         sh "pwd"
                         sh "./patrick.sh ${APP_BRANCH}"
                         sh 'cat VERSION'
@@ -58,7 +59,7 @@ pipeline {
 
                 def msg = "[Jenkins] hi---hi"
                 msg = msg.replaceAll("---", "")
-                echo "${msg}"
+                echo "${msg} ${params.GENERATE_CLIENT}"
             }
         }
     }
@@ -67,7 +68,6 @@ pipeline {
 def writeFile(token, filePath){
     token = token.replaceAll("---", "")
     sh "echo -n ${token} > ${filePath}"
-
     sh "sed -i \"s/ / '/g\" ${filePath}"
     sh "echo \\' >> ${filePath}"
 }
