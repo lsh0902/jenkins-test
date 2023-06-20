@@ -7,6 +7,7 @@ pipeline {
         PHASE = ''
         APP_BRANCH = 'master'
         BUILD_USER = ''
+        CLIENT_VERSION_UPDATED = false
     }
 
     parameters {
@@ -22,7 +23,7 @@ pipeline {
         stage('client_gen') {
             steps {
                 script {
-                    params.GENERATE_CLIENT = false
+                    CLIENT_VERSION_UPDATED = true
                 }
             }
         }
@@ -42,7 +43,9 @@ pipeline {
 
                 def msg = "[Jenkins] hi---hi"
                 msg = msg.replaceAll("---", "")
-                echo "${msg} ${params.GENERATE_CLIENT}"
+                if (CLIENT_VERSION_UPDATED) {
+                    echo "${msg} ${params.GENERATE_CLIENT}"
+                }
             }
         }
     }
