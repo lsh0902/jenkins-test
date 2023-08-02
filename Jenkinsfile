@@ -3,10 +3,11 @@ pipeline {
     agent any
 
     environment {
-        TALK_GROUP_ID = 8641
+        BUILD_USER = "${APP_BRANCH}"
+        WATCH_TOWER_GROUP = [dev: 1111, prod: 2222]
+        TALK_GROUP_ID = ''
         PHASE = ''
         APP_BRANCH = 'master'
-        BUILD_USER = "${APP_BRANCH}"
         CLIENT_VERSION_UPDATED = false
     }
 
@@ -23,6 +24,7 @@ pipeline {
         stage('client_gen') {
             steps {
                 script {
+                    TALK_GROUP_ID = WATCH_TOWER_GROUP["dev"]
                     CLIENT_VERSION_UPDATED = true
                 }
             }
@@ -44,7 +46,7 @@ pipeline {
                 def msg = "[Jenkins] hi---hi"
                 msg = msg.replaceAll("---", "")
                 if (CLIENT_VERSION_UPDATED) {
-                    echo "${msg} ${params.GENERATE_CLIENT} ${BUILD_USER}"
+                    echo "${msg} ${params.GENERATE_CLIENT} ${BUILD_USER} ${TALK_GROUP_ID}"
                 }
             }
         }
