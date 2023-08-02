@@ -70,7 +70,7 @@ def isProdZone(phase){
 
 def getWatchTowerGroupID(phase) {
     def WATCH_TOWER_GROUP = [dev: 8641, prod: 18174]
-    if (isProdeZone(phase)) {
+    if (isProdZone(phase)) {
         return WATCH_TOWER_GROUP["prod"]
     } else {
         return WATCH_TOWER_GROUP["dev"]
