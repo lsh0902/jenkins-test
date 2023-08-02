@@ -4,7 +4,6 @@ pipeline {
 
     environment {
         BUILD_USER = "${APP_BRANCH}"
-        WATCH_TOWER_GROUP = ["dev": "111", "prod": "2222"]
         TALK_GROUP_ID = ''
         PHASE = ''
         APP_BRANCH = 'master'
@@ -24,6 +23,7 @@ pipeline {
         stage('client_gen') {
             steps {
                 script {
+                    def WATCH_TOWER_GROUP = [dev: 111, prod: 2222]
                     TALK_GROUP_ID = WATCH_TOWER_GROUP["dev"]
                     CLIENT_VERSION_UPDATED = true
                 }
