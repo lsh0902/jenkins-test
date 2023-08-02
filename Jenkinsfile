@@ -23,7 +23,6 @@ pipeline {
         stage('client_gen') {
             steps {
                 script {
-                    TALK_GROUP_ID = WATCH_TOWER_GROUP["dev"]
                     CLIENT_VERSION_UPDATED = true
                 }
             }
