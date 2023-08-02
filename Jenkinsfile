@@ -6,7 +6,7 @@ pipeline {
         TALK_GROUP_ID = 8641
         PHASE = ''
         APP_BRANCH = 'master'
-        BUILD_USER = ''
+        BUILD_USER = "${APP_BRANCH}"
         CLIENT_VERSION_UPDATED = false
     }
 
@@ -44,7 +44,7 @@ pipeline {
                 def msg = "[Jenkins] hi---hi"
                 msg = msg.replaceAll("---", "")
                 if (CLIENT_VERSION_UPDATED) {
-                    echo "${msg} ${params.GENERATE_CLIENT}"
+                    echo "${msg} ${params.GENERATE_CLIENT} ${BUILD_USER}"
                 }
             }
         }
