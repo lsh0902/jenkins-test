@@ -23,7 +23,6 @@ pipeline {
         stage('client_gen') {
             steps {
                 script {
-                    def WATCH_TOWER_GROUP = [dev: 111, prod: 2222]
                     TALK_GROUP_ID = WATCH_TOWER_GROUP["dev"]
                     CLIENT_VERSION_UPDATED = true
                 }
@@ -47,6 +46,7 @@ pipeline {
                 msg = msg.replaceAll("---", "")
                 if (CLIENT_VERSION_UPDATED) {
                     echo "${msg} ${params.GENERATE_CLIENT} ${BUILD_USER} ${TALK_GROUP_ID}"
+                    echo "${getWatchTowerGroupID('dev')} ${getWatchTowerGroupID('cbt')}"
                 }
             }
         }
@@ -58,4 +58,22 @@ def writeFile(token, filePath){
     sh "echo -n ${token} > ${filePath}"
     sh "sed -i \"s/ / '/g\" ${filePath}"
     sh "echo \\' >> ${filePath}"
+}
+
+
+def isProdZone(phase){
+    if(phase == 'dev' || phase == 'sandbox') {
+        return false;
+    } else {
+        return true;
+    }
+}
+
+def getWatchTowerGroupID(phase) {
+    def WATCH_TOWER_GROUP = [dev: 8641, prod: 18174]
+    if (isProdeZone(phase)) {
+        return WATCH_TOWER_GROUP["prod"]
+    } else {
+        return WATCH_TOWER_GROUP["dev"]
+    }
 }
