@@ -44,7 +44,7 @@ pipeline {
                 def msg = "[Jenkins] hi---hi"
                 msg = msg.replaceAll("---", "")
                 if (CLIENT_VERSION_UPDATED) {
-                    echo "${msg} ${params.GENERATE_CLIENT} ${BUILD_USER} ${TALK_GROUP_ID}"
+                    echo "${msg} ${params.GENERATE_CLIENT} ${BUILD_USER}"
                     echo "${getWatchTowerGroupID('dev')} ${getWatchTowerGroupID('cbt')}"
                 }
             }
