@@ -4,7 +4,7 @@ pipeline {
 
     environment {
         BUILD_USER = "${APP_BRANCH}"
-        WATCH_TOWER_GROUP = [dev: '1111', prod: '2222']
+        WATCH_TOWER_GROUP = ["dev": "111", "prod": "2222"]
         TALK_GROUP_ID = ''
         PHASE = ''
         APP_BRANCH = 'master'
