@@ -41,7 +41,7 @@ pipeline {
         always {
             script {
 
-                def msg = "[Jenkins] hi---hi"
+                def msg = "[Jenkins] hi---hi ${env.WORKSPACE}"
                 msg = msg.replaceAll("---", "")
                 if (CLIENT_VERSION_UPDATED) {
                     echo "${msg} ${params.GENERATE_CLIENT} ${BUILD_USER}"
